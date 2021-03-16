@@ -29,19 +29,27 @@ int main() {
 int* findMissing(int arr[], int n, int& resArrSize) {
     int* newArr;
     int sentArrSize = n;
-    newArr = new int[sentArrSize];
+    newArr = new int[sentArrSize*2];
 
     int arrSize = 0;
     int* tempArr;
 
-    tempArr = new int[sentArrSize + 1];
+    tempArr = new int[sentArrSize*2];
+
+    int max = arr[0];
+    for(int i = 1; i < n; i++){
+        if(arr[i] > max){
+            max = arr[i];
+        }
+    }
 
     for(int i = 0; i < n; i++){
         tempArr[arr[i]] = -1;
     }
 
+
     int j = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < max; i++) {
         if(tempArr[i] != -1) {
             newArr[j] = i;
             arrSize++;
